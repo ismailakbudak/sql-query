@@ -16,7 +16,11 @@ development:
 test:
   <<: *default
   database: app_test
+  username: root
+  password: '1234'
 
 production:
   <<: *default
   database: app_production 
+  username: root
+  password: '1234'

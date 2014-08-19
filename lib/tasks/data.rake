@@ -9,9 +9,9 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    #create_team
-    #create_match
-    #create_player
+    create_team
+    create_match
+    create_player
     create_goal
   end
 end
@@ -44,6 +44,14 @@ end
 def create_goal
     m1 = Match.first 
     p1 = m1.home.players.first
+    3.times do |n|
+        Goal.create!(  match_id:   m1.id,
+                       player_id:  p1.id,
+                       minute:     (n + 1) * 20  )
+    end    
+
+    m1 = Match.first 
+    p1 = m1.guest.players.first
     3.times do |n|
         Goal.create!(  match_id:   m1.id,
                        player_id:  p1.id,
