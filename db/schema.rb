@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819121101) do
+ActiveRecord::Schema.define(version: 20140819132553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "goals", force: true do |t|
+    t.integer  "match_id"
+    t.integer  "player_id"
+    t.integer  "minute"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "goals", ["match_id"], name: "index_goals_on_match_id", using: :btree
+  add_index "goals", ["player_id"], name: "index_goals_on_player_id", using: :btree
 
   create_table "matches", force: true do |t|
     t.integer  "home_id"
