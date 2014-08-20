@@ -30,7 +30,9 @@ We want to get a list of the team that scores higher in the first half than the 
     # SELECT COUNT(*) FROM "goals" 
     # INNER JOIN "players" ON "players"."id" = "goals"."player_id" 
     # INNER JOIN "matches" ON "matches"."id" = "goals"."match_id" 
-    # WHERE (matches.home_id = 1 OR matches.guest_id = 1) AND "players"."team_id" = 1 AND (goals.minute <= '45')
+    # WHERE (matches.home_id = 1 OR matches.guest_id = 1) 
+    #        AND "players"."team_id" = 1 
+    #        AND (goals.minute <= '45')
     def first_half
     	team = self
     	Goal.joins(:player).joins(:match)
