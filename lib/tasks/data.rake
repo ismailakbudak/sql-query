@@ -2,7 +2,7 @@
 # Gem file
 # gem 'faker', '1.1.2'
 
-# Taskı çalıştırmak için
+# Run this command from console
 # rake db:reset
 # rake db:populate
 
@@ -16,6 +16,7 @@ namespace :db do
   end
 end
 
+# Create 10 teams 
 def create_team
   10.times do |n|
     team_name  = Faker::Name.name 
@@ -23,13 +24,16 @@ def create_team
   end
 end
 
+# Create 1 matches
+# Home team_id => 1 
+# Guest team_id => 1
 def create_match
-  2.times do |n|
-    Match.create!(  home_id: n + 1,
-                    guest_id: n + 2  )
-  end
+    Match.create!(  home_id: 1, guest_id: 2  )
 end
- 
+
+# Create 6 player 
+# 3 of them are from team_id => 1
+# 3 of them are from team_id => 2
 def create_player
   3.times do |n|
     player_name  = Faker::Name.name 
@@ -41,6 +45,9 @@ def create_player
   end
 end
 
+# Create 6 goals
+# 3 of them are from player_id => 1. It belongs to team_id => 1 
+# 3 of them are from player_id => 1. It belongs to team_id => 2
 def create_goal
     m1 = Match.first 
     p1 = m1.home.players.first
@@ -55,6 +62,6 @@ def create_goal
     3.times do |n|
         Goal.create!(  match_id:   m1.id,
                        player_id:  p1.id,
-                       minute:     (n + 1) * 20  )
+                       minute:     (n + 1) * 30  )
     end      
 end

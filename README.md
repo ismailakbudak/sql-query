@@ -1,28 +1,60 @@
-== README
+## sql-query
+Advanced relational model with rails 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+We want to get a list of the team that scores higher in the first half than the second half.
 
-Things you may want to cover:
+## Models 
 
-* Ruby version
++ Team
+  - id
+  - name
++ Player
+  - id
+  - team_id
+  - player_number
+  - player_name
++ Match
+  - id
+  - home_id
+  - guest_id
+  - match_date     
++ Goal
+  - id
+  - match_id
+  - player_id
+  - minute 
 
-* System dependencies
+## Example 
+The count of total scores of team that scored first half
+```ruby
+    # SELECT COUNT(*) FROM "goals" 
+    # INNER JOIN "players" ON "players"."id" = "goals"."player_id" 
+    # INNER JOIN "matches" ON "matches"."id" = "goals"."match_id" 
+    # WHERE (matches.home_id = 1 OR matches.guest_id = 1) AND "players"."team_id" = 1 AND (goals.minute <= '45')
+    def first_half
+    	team = self
+    	Goal.joins(:player).joins(:match)
+            .where("matches.home_id = :id OR matches.guest_id = :id", :id => team.id)
+            .where( { players: { team_id: team.id } } )
+            .where("goals.minute <= ?", "45").count
+    end
+```
+## Usage
+Set your database
+`config/database.yml` 
 
-* Configuration
+Run command
+<tt> rake db:migrate    </tt>
 
-* Database creation
+Open browser
+<tt> rails s    </tt>
+`localhost:3000`
 
-* Database initialization
+I am using faker gem for some data 
+`gem 'faker', '1.1.2'`
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Also look : `lib/tasks/data.rake` 
+If you want to fill your database with simple data you can run this commands
+<tt> rake db:reset    </tt>
+<tt> rake db:populate </tt>
+ 

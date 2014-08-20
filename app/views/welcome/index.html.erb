@@ -1,3 +1,16 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-<%= Team.all.inspect %>
+
+<h1> The team list that score higher in the first half than the second half.</h2>
+<% teams = Team.all 
+   teams.each do |team| 
+    if  team.is_bigger %>
+		  <div> Team id : <%= team.id  %>      
+	      <div> First half : 
+	      <%=  team.second_half  %>
+	      </div>
+	      <div> Second half : 
+	      <%=  team.first_half %>
+	      </div>
+	      <hr/>
+    <% end %>          
+<% end %>
+
