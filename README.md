@@ -41,20 +41,22 @@ The count of total scores of team that scored first half
 ```
 ## Usage
 Set your database
-`config/database.yml` 
+- `config/database.yml` 
 
 Run command
-<tt> rake db:migrate    </tt>
+* `rake db:migrate`
 
 Open browser
-<tt> rails s    </tt>
-`localhost:3000`
+* `rails s`
+* `localhost:3000`
 
 I am using faker gem for some data 
-`gem 'faker', '1.1.2'`
+* `gem 'faker', '1.1.2'`
 
-Also look : `lib/tasks/data.rake` 
+Also look : 
+* `lib/tasks/data.rake` 
+
 If you want to fill your database with simple data you can run this commands
-<tt> rake db:reset    </tt>
-<tt> rake db:populate </tt>
+<tt> `rake db:reset`    </tt>
+<tt> `rake db:populate` </tt>
  
