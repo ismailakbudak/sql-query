@@ -1,5 +1,5 @@
 ## sql-query
-Advanced relational model with rails 
+Advanced relational model and sql-query example with Ruby on Rails
 
 We want to get a list of the team that scores higher in the first half than the second half.
 
