@@ -27,7 +27,7 @@ class Team < ActiveRecord::Base
     # INNER JOIN "teams" ON "teams"."id" = "players"."team_id" 
     # WHERE "players"."team_id" = 1
     def goals
-    	 Player.joins(:goals).joins(:team).where( team_id: self.id ).count
+    	 Player.joins(:goals).joins(:team).where( team_id: self.id )
     end
 
     # SELECT COUNT(*) FROM "goals" 
