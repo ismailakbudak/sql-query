@@ -38,7 +38,7 @@ We want to get a list of the team that scores higher in the first half than the 
     	Goal.joins(:player).joins(:match)
             .where("matches.home_id = :id OR matches.guest_id = :id", :id => team.id)
             .where( { players: { team_id: team.id } } )
-            .where("goals.minute < ?", "45").count
+            .where("goals.minute <= ?", "45").count
     end
 ```
 
@@ -58,7 +58,7 @@ select * from teams t where
   inner join players p on p.team_id = t.id 
   where ( m.home_id = t.id or m.guest_id = t.id ) 
         and g.player_id = p.id
-        and g.minute >= 45  
+        and g.minute > 45  
  )
 ```
 ## Usage
